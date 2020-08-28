@@ -46,7 +46,6 @@ const StartGameScreen = props => {
         setSelectedNumber(parseInt(enteredValue))
         setEnteredValue('');
         Keyboard.dismiss();
-        console.log('hola');
     }
 
     let confirmedOutput;
