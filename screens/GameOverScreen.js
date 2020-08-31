@@ -1,14 +1,18 @@
 //import libraries
 import React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Button, Image } from 'react-native';
+
+import BodyText from '../components/BodyText';
+import TitleText from '../components/TitleText';
 
 // create a component
 const GameOverScreen = (props) => {
     return(
         <View style={styles.screen}>
-            <Text>Game Over!</Text>
-            <Text>Your number was: {props.userNumber}</Text>
-            <Text>Number of Rounds: {props.numRounds}</Text>
+            <TitleText>Game Over!</TitleText>
+            <Image source={require('../assets/success.png')} style={styles.image} />
+            <BodyText>Your number was: {props.userNumber}</BodyText>
+            <BodyText>Number of Rounds: {props.numRounds}</BodyText>
             <Button title="New Game" onPress={props.onRestart} />
         </View>
     )
@@ -20,6 +24,10 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    image: {
+        width: '50%',
+        height: '25%'
     }
 });
 

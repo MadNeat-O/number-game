@@ -3,14 +3,15 @@ import React from 'react';
 import { Text, StyleSheet } from 'react-native';
 
 // create a component
-const BodyText = (props) => <Text style={{...styles.body,  ...props.style}}>{props.children}</Text>
+const TitleText = (props) => <Text style={{...styles.Title,  ...props.style}}>{props.children}</Text>
 
 // define your styles
 const styles = StyleSheet.create({
-    body: {
-        fontFamily: 'open-sans'
+    Title: {
+        fontFamily: 'open-sans-bold',
+        fontSize: 18
     }
 });
 
 //make this component available to the app
-export default BodyText;
+export default TitleText;
