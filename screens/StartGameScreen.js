@@ -11,7 +11,8 @@ import {
 
 import Card from '../components/Card';
 import Input from '../components/Input';
-import NumberContainer from '../components/NumberContainer'
+import NumberContainer from '../components/NumberContainer';
+import BodyText from '../components/BodyText'
 import Colors from '../constants/colors';
 
 const StartGameScreen = props => {
@@ -68,7 +69,7 @@ const StartGameScreen = props => {
             <View style={styles.screen}>
                 <Text style={styles.title}>Start a new game!</Text>
                 <Card style={styles.inputContainer}>
-                    <Text style={styles.prompt}>Enter a number</Text>
+                    <BodyText style={styles.prompt}>Enter a number</BodyText>
                     <Input 
                         style={styles.input}
                         autoCapitalize="none"
@@ -127,9 +128,6 @@ const styles = StyleSheet.create({
     confirmContainer: {
         marginVertical: 20,
         alignItems: 'center'
-    },
-    prompt: {
-        fontFamily: 'open-sans'
     }
 });
 
