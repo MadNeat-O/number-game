@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, StyleSheet, Button, Alert  } from 'react-native';
+import { View, Text, StyleSheet, Alert, ScrollView  } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
 import NumberContainer from '../components/NumberContainer';
@@ -19,8 +19,9 @@ const generateRandomBetween = (min, max, exclude) => {
 }
 
 const GameScreen  = props => {
-    const [currentGuess, setCurrentGuess] = useState(generateRandomBetween(1, 100, props.userChoice));
-    const [rounds, setRounds] = useState(0)
+    const initGuess = generateRandomBetween(1, 100, props.userChoice)
+    const [currentGuess, setCurrentGuess] = useState(initGuess);
+    const [pastGuesses, setPastGuesses] = useState([initGuess])
     const currentLow = useRef(1);
     const currentHigh = useRef(100);
 
@@ -28,7 +29,7 @@ const GameScreen  = props => {
 
     useEffect(() => {
         if (currentGuess === userChoice) {
-            onGameOver(rounds);
+            onGameOver(pastGuesses.length);
         }
     }, [currentGuess, userChoice, onGameOver])
 
@@ -42,11 +43,12 @@ const GameScreen  = props => {
         if (direction === 'lower') {
             currentHigh.current = currentGuess;
         } else {
-            currentLow.current = currentGuess;
+            currentLow.current = currentGuess + 1;
         }
         const nextNum = generateRandomBetween(currentLow.current, currentHigh.current, currentGuess);
         setCurrentGuess(nextNum);
-        setRounds(curRounds => curRounds + 1)
+        // setRounds(curRounds => curRounds + 1)
+        setPastGuesses(curPastGuesses => [nextNum, ...curPastGuesses])
     };
 
     return(
@@ -61,6 +63,13 @@ const GameScreen  = props => {
                     <AntDesign name="downcircleo" size={24} color="white" />
                 </MainButton>
             </Card>
+            <ScrollView>
+                {pastGuesses.map(guess => 
+                    <View key={guess}>
+                        <Text>{guess}</Text>
+                    </View>
+                )}
+            </ScrollView>
         </View>
     )
 };
