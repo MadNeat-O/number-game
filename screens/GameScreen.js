@@ -23,7 +23,7 @@ const renderListItem = (value, numRound) => {
     return (
         <View key={value} style={styles.listItem}>
             <BodyText>Round #{numRound}</BodyText>
-            <BodyText>{value}</BodyText>
+            <BodyText>Guess: {value}</BodyText>
         </View>
     )
 }
@@ -53,7 +53,7 @@ const GameScreen  = props => {
         if (direction === 'lower') {
             currentHigh.current = currentGuess;
         } else {
-            currentLow.current = currentGuess;
+            currentLow.current = currentGuess + 1;
         }
         const nextNum = generateRandomBetween(currentLow.current, currentHigh.current, currentGuess);
         setCurrentGuess(nextNum);
@@ -72,9 +72,11 @@ const GameScreen  = props => {
                     <AntDesign name="upcircleo" size={24} color="white" />
                 </MainButton>
             </Card>
-            <ScrollView>
-                {pastGuesses.map(guess => renderListItem(guess))}
-            </ScrollView>
+            <View style={styles.listContainer}>
+                <ScrollView contentContainerStyle={styles.listContent}>
+                    {pastGuesses.map((guess, index) => renderListItem(guess, pastGuesses.length - index))}
+                </ScrollView>
+            </View>
         </View>
     )
 };
@@ -92,6 +94,13 @@ const styles = StyleSheet.create({
         width: 300,
         maxWidth: '80%'
     },
+    listContainer: {
+        flex: 1,
+        width: '80%'
+    },
+    listContent: {
+        alignItems: 'center'
+    },
     listItem: {
         borderColor: '#ccc',
         borderWidth: 1,
@@ -99,7 +108,8 @@ const styles = StyleSheet.create({
         padding: 15,
         marginVertical: 10,
         backgroundColor: 'white',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        justifyContent: "space-between"
     }
 });
 
