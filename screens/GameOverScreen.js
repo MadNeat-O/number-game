@@ -1,6 +1,6 @@
 //import libraries
 import React from 'react';
-import { View, Text, StyleSheet, Button, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, Dimensions, ScrollView } from 'react-native';
 
 import BodyText from '../components/BodyText';
 import TitleText from '../components/TitleText';
@@ -10,25 +10,27 @@ import MainButton from '../components/MainButton';
 // create a component
 const GameOverScreen = (props) => {
     return(
-        <View style={styles.screen}>
-            <TitleText>Game Over!</TitleText>
-            <View style={styles.imageContainer}>
-                <Image 
-                    // source={require('../assets/success.png')} 
-                    source={{ uri: 'https://images.pexels.com/photos/314703/pexels-photo-314703.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260' }}
-                    style={styles.image}
-                />
-            </View>
-            <BodyText>
-                The computer took <Text style={styles.highlight}>{props.numRounds}</Text> rounds, 
-            </BodyText>
-            <BodyText>
-                to guess that your number was <Text style={styles.highlight}>{props.userNumber}</Text>
+        <ScrollView>
+            <View style={styles.screen}>
+                <TitleText>Game Over!</TitleText>
+                <View style={styles.imageContainer}>
+                    <Image 
+                        // source={require('../assets/success.png')} 
+                        source={{ uri: 'https://images.pexels.com/photos/314703/pexels-photo-314703.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260' }}
+                        style={styles.image}
+                    />
+                </View>
+                <BodyText style={styles.resultText}>
+                    The computer took <Text style={styles.highlight}>{props.numRounds}</Text> rounds, 
                 </BodyText>
-            <View style={styles.buttonContainer}>
-                <MainButton onPress={props.onRestart}>New Game</MainButton>
+                <BodyText style={styles.resultText}>
+                    to guess that your number was <Text style={styles.highlight}>{props.userNumber}</Text>
+                    </BodyText>
+                <View style={styles.buttonContainer}>
+                    <MainButton onPress={props.onRestart}>New Game</MainButton>
+                </View>
             </View>
-        </View>
+        </ScrollView>
     )
 };
 
@@ -40,17 +42,20 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     imageContainer: {
-        width: 200,
-        height: 200,
-        borderRadius: 100,
+        width: Dimensions.get('window').width * .5,
+        maxHeight: Dimensions.get('window').width * .5,
+        borderRadius: (Dimensions.get('window').width * .5) / 2,
         borderWidth: 3,
         borderColor: 'black',
         overflow: 'hidden',
-        marginVertical: 30
+        marginVertical: Dimensions.get('window').height / 20
     },
     image: {
         width: '100%', 
         height: '100%',
+    },
+    resultText: {
+        fontSize: Dimensions.get('window').height < 400 ? 16 : 20
     },
     highlight: {
         color: Color.primary,
