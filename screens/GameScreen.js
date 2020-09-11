@@ -22,7 +22,7 @@ const generateRandomBetween = (min, max, exclude) => {
 const renderListItem = (value, numRound) => {
     return (
         <View key={value} style={styles.listItem}>
-            <BodyText>Round #{numRound}</BodyText>
+            <BodyText>Round #{numRound} </BodyText>
             <BodyText>Guess: {value}</BodyText>
         </View>
     )
@@ -89,17 +89,20 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         flexDirection: 'row',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         marginTop: 20,
-        width: 300,
-        maxWidth: '80%'
+        width: '80%',
+        maxWidth: '95%',
+        minWidth: 300
     },
     listContainer: {
         flex: 1,
-        width: '80%'
+        width: '100%'
     },
     listContent: {
-        alignItems: 'center'
+        flexGrow: 1,
+        alignItems: 'center',
+        justifyContent: 'flex-end'
     },
     listItem: {
         borderColor: '#ccc',
@@ -109,7 +112,8 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         backgroundColor: 'white',
         flexDirection: 'row',
-        justifyContent: "space-between"
+        justifyContent: 'space-between',
+        width: '70%'
     }
 });
 
