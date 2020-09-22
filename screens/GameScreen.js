@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, StyleSheet, Alert, ScrollView, Dimensions  } from 'react-native';
+import { View, StyleSheet, Alert, ScrollView, Dimensions, Platform  } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
 import NumberContainer from '../components/NumberContainer';
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
         width: '80%',
         maxWidth: '95%',
-        minWidth: 300
+        minWidth: 300,
     },
     listContainer: {
         flex: 1,
