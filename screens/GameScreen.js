@@ -33,7 +33,7 @@ const GameScreen  = props => {
     const [currentGuess, setCurrentGuess] = useState(initGuess);
     const [pastGuesses, setPastGuesses] = useState([initGuess]);
     const [availableDeviceWidth, setAvailableDeviceWidth] = useState(Dimensions.get('window').width);
-    const [availableDeviceHeight, setAvailableDeviceHeight] = useState(Dimensions.get('window').height)
+    const [availableDeviceHeight, setAvailableDeviceHeight] = useState(Dimensions.get('window').height);
     const currentLow = useRef(1);
     const currentHigh = useRef(100);
 
